@@ -18,11 +18,10 @@ public class CarApp {
 		carList.add(new UsedCar("(5)" + " Ford", "Fiesta", 2011, 1529.80, 123456.7));
 		carList.add(new UsedCar("(6)" + " Porsche", "356", 1960, 88724.40, 12197.3));
 
+		do {
 		System.out.println("Welcome to Grand Circus Motor admin Console!");
-		System.out.printf("%-20s %-10s %-10s %-10s %-10s\n", "      Make", "Model", "Year", " Price", "Mileage");// printf
-																												// is
-																												// formatting
-		System.out.printf("%-20s %-10s %-10s %-10s %-10s\n", "    ~~~~~~~~~~ ", "~~~~~~", "~~~~~~", "~~~~~~~", "~~~~~~~");
+		System.out.printf("%-20s %-10s %-10s %-10s %-10s\n", "      Make", "Model", "Year", " Price", "Mileage");																										// formatting
+		System.out.printf("%-20s %-10s %-10s %-10s %-10s\n", "    ~~~~~~~~", "~~~~~~", "~~~~~~", "~~~~~~~", "~~~~~~~");
 
 		for (UsedCar carz : carList) {
 			System.out.printf("%-20s %-10s %-10d $%-10.2f %-10.1f\n", carz.getMake(), carz.getModel(), carz.getYear(),
@@ -38,12 +37,16 @@ public class CarApp {
 			}
 			i++;
 		}
-		while (Validator.getString(userInput, "Would you like to buy this car? (y/n): ")
-				.equals("y")) {
-			
-			System.out.println("Excellent! Our finance department will be in touch shortly.");
-
+		}while (Validator.getStringMatchingRegex(userInput, "Would you like to buy this car? (y/n): ", "[yY]")
+				.equalsIgnoreCase("y"));
+		
+		System.out.println();	
+		System.out.println("Excellent! Our finance department will be in touch shortly.");
+		
+		userInput.close();
 		}
+}
+
 //		System.out.println("Would you like to buy this car? (y/n): ");
 //		String money = userInput.nextLine();
 //
@@ -55,7 +58,4 @@ public class CarApp {
 //			}
 //		}
 
-		userInput.close();
-	}
 
-}
