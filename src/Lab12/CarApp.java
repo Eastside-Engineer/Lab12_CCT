@@ -3,8 +3,6 @@ package Lab12;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import week3.Validator;
-
 public class CarApp {
 
 	public static void main(String[] args) {
@@ -18,7 +16,7 @@ public class CarApp {
 		carList.add(new UsedCar("(5)" + " Ford", "Fiesta", 2011, 1529.80, 123456.7));
 		carList.add(new UsedCar("(6)" + " Porsche", "356", 1960, 88724.40, 12197.3));
 
-		boolean finished = true;
+		boolean keeplooping = true;
 
 		System.out.println("Welcome to Grand Circus Motor admin Console!");
 		do {
@@ -46,17 +44,35 @@ public class CarApp {
 			
 			userAnswer.equalsIgnoreCase("y");
 			
-			System.out.println("Excellent! Our finance department will be in touch shortly.");
+			if (userAnswer.equalsIgnoreCase("y")) {
+				carList.remove(enter - 1); 
+				System.out.println("Excellent! Our finance department will be in touch shortly.");
+			}//else if (keeplooping == false){
+//				System.out.println();
+//			}
+			
+//			System.out.println("finished A " + keeplogging);
 			
 			String again = Validator.getStringMatchingRegex(userInput, "Would you like to look at another car?",
 					"[yYnN]");
 			
-			again.equalsIgnoreCase("y");
+			if (again.equalsIgnoreCase("n")) {
+				System.out.println("Have a great day!");
+				break;
+			}//else if (keeplooping == true){
+				
+//				System.out.println();
+//			}
 			
-				System.out.println("Have a good day!");
+			  //removes the user's choice from the cars list
+
+//			System.out.println("finished B " + keeplogging);
+//			System.out.println("again B " + again);
+//			System.out.println("finished C " + keeplogging);
+//			System.out.println("again C " + again);
 			
-			
-		}while (!finished);
+		}while (keeplooping == true);
+		
 
 		userInput.close();
 	
